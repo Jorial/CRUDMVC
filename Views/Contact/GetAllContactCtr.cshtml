@@ -1,0 +1,51 @@
+﻿@using System.Data;
+@model DataTable;
+@using CRUDMVC.Models;
+
+
+
+@{
+    ViewData["Title"] = "GetAllContactCtr";
+}
+
+<h1>Lista de Registros</h1>
+@Html.RadioButton("Gender","Male") 
+
+<a asp-action="SaveContactControler" asp-controller="Contact" class="btn btn-warning" > Crear Nuevo Registro </a>
+
+ <div class="card-body">
+        <table class="table">
+          <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+            </tr>
+          </thead>
+          <tbody>
+              
+            @{               
+                ContactModel cm = new ContactModel();
+                foreach (DataRow item in Model.Rows)
+                {
+                    cm.Idcontacto = @Convert.ToInt32(item[0]);
+                    cm.Nombre = @Convert.ToString(item[1]);
+                    cm.Telefono = @Convert.ToInt32(item[2]);                   
+                        <tr>
+                           <td>@cm.Idcontacto </td>
+                           <td>@cm.Nombre</td>
+                           <td>@cm.Telefono</td>
+                           <td> 
+                               <a asp-action="UpdateContatControl" asp-controller="Contact" class="btn btn-primary btn-sm" asp-route-Id = "@cm.Idcontacto" > Editar </a>
+                               <a asp-action="DeleteContactCtr" asp-controller="Contact" class="btn btn-danger btn-sm" asp-route-Id = "@cm.Idcontacto" > Eliminar </a>
+                           </td>
+                        </tr>
+                    }
+                }
+                
+                
+          </tbody>
+        </table>
+      
+
+  </div>

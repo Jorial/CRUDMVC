@@ -1,0 +1,30 @@
+﻿@model ContactModel;
+@{
+    ViewData["Title"] = "SaveContactControler";
+}
+
+<div class="card">
+  <div class="card-header">
+    Guardar Registro
+  </div>
+  <div class="card-body">
+    
+        <form asp-action="SaveContactControler" asp-controller="Contact" method="post">
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input asp-for="Nombre" type="text" class="form-control" placeholder="Ingrese su nombre" >
+            <span asp-validation-for="Nombre" class="text-danger"> </span>
+            
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono</label>
+            <input asp-for="Telefono" type="text" class="form-control" placeholder="Ingrese un numero de telefono" >
+            <span asp-validation-for="Telefono" class="text-danger"> </span>
+          </div>          
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a asp-action="GetAllContactCtr" asp-controller="Contact" class="btn btn-warning" > Volver a la lista </a>
+    </form>
+
+  </div>
+</div>
+
